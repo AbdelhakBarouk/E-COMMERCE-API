@@ -4,18 +4,24 @@ require("express-async-errors");
 const express = require("express");
 const app = express();
 
-//middlewares
-const notFoundMiddleware = require("./middlewares/notFound");
-const errorHandlerMiddleware = require("./middlewares/error-handller");
+//rest of packages
+const cookieParser = require("cookie-parser");
 
 //db
 const connectDB = require("./db/connectDB");
 
-app.use(express.json());
-
-//routes
+//routers
+const authRouter = require("./routes/authRoute");
 
 //middlewares
+const notFoundMiddleware = require("./middlewares/notFound");
+const errorHandlerMiddleware = require("./middlewares/error-handller");
+
+app.use(express.json());
+app.use(cookieParser(process.env.JWT_SECRET_KEY));
+
+app.use("/api/v1/auth", authRouter);
+
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
