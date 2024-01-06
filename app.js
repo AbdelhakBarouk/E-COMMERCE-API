@@ -12,15 +12,17 @@ const connectDB = require("./db/connectDB");
 
 //routers
 const authRouter = require("./routes/authRoute");
+const userRouter = require("./routes/userRoute");
 
 //middlewares
 const notFoundMiddleware = require("./middlewares/notFound");
 const errorHandlerMiddleware = require("./middlewares/error-handller");
 
 app.use(express.json());
-app.use(cookieParser(process.env.JWT_SECRET_KEY));
+app.use(cookieParser(process.env.JWT_SECRET));
 
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/users", userRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

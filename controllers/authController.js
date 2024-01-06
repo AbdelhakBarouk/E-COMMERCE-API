@@ -36,7 +36,7 @@ const login = async (req, res) => {
   }
 
   //token part
-  const payload = createUserPayload({ user });
+  const payload = createUserPayload(user);
   attachCookieToResponse({ res, payload });
 
   res.status(StatusCodes.OK).json({ user: payload });
@@ -45,7 +45,7 @@ const logout = async (req, res) => {
   res.cookie("token", "logout", {
     httpOnly: true,
     expires: new Date(Date.now()),
-    sign: true,
+    signed: true,
   });
   res.status(StatusCodes.OK).json({ msg: "user logged out" });
 };

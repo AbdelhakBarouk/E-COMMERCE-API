@@ -1,14 +1,13 @@
 const jwt = require("jsonwebtoken");
 
 const createJWT = ({ payload }) => {
-  const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, {
+  const token = jwt.sign(payload, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_LIFETIME,
   });
   return token;
 };
-const isValideToken = ({ token }) => {
-  jwt.verify(token, process.env.JWT_SECRET_KEY);
-};
+const isValideToken = ({ token }) => jwt.verify(token, process.env.JWT_SECRET);
+
 const attachCookieToResponse = ({ res, payload }) => {
   const token = createJWT({ payload });
   const oneDay = 24 * 60 * 60 * 1000;
