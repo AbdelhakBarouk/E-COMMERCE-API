@@ -15,6 +15,10 @@ const {
   uploadCategoryImage,
 } = require("../controllers/CategoryController");
 
+//nested route
+const subCategoryRouter = require("./subCategoryRoute");
+categoryRouter.use("/:categoryId/subCategories", subCategoryRouter);
+
 categoryRouter
   .route("/")
   .get(getAllCategories)
