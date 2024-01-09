@@ -15,6 +15,7 @@ const authRouter = require("./routes/authRoute");
 const userRouter = require("./routes/userRoute");
 const categoryRouter = require("./routes/categoryRoute");
 const subCategoryRouter = require("./routes/subCategoryRoute");
+const brandRouter = require("./routes/brandRoute");
 
 //middlewares
 const notFoundMiddleware = require("./middlewares/notFound");
@@ -28,6 +29,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/categories", categoryRouter);
 app.use("/api/v1/subCategories", subCategoryRouter);
+app.use("/api/v1/brands", brandRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
