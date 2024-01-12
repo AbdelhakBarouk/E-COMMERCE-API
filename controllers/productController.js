@@ -5,10 +5,17 @@ const Brand = require("../models/brandModel");
 const Category = require("../models/categoryModel");
 const SubCategory = require("../models/subCategoryModel");
 const slugify = require("slugify");
-const { uploadSingleImage } = require("../middlewares/uploadImageMiddleware");
+const {
+  uploadSingleImage,
+  uploadMixOfImages,
+} = require("../middlewares/uploadImageMiddleware");
 
 // Upload product cover image
 const uploadproductCoverImage = uploadSingleImage("imageCover", "product");
+const uploadProductMixOfImages = uploadMixOfImages("product").fields([
+  { name: "imageCover", maxCount: 1 },
+  { name: "images", maxCount: 5 },
+]);
 
 // @desc Get list of products
 // @route GET /api/v1/products
@@ -35,8 +42,9 @@ const getSingleProduct = async (req, res) => {
 const createProduct = async (req, res) => {
   const { title, description, quantity, price, category, subcategory, brand } =
     req.body;
+  //console.log(req.files);
   if (
-    !req.file ||
+    !req.files["imageCover"] ||
     !title ||
     !description ||
     !quantity ||
@@ -48,7 +56,17 @@ const createProduct = async (req, res) => {
     throw new CustomError.BadRequestError("please provide all values");
   }
   const slug = slugify(title);
-  const productCoverImagePath = "/product/" + req.file.filename;
+  const productCoverImagePath =
+    "/product/" + req.files["imageCover"][0].filename;
+
+  const images = [];
+  if (req.files["images"]) {
+    req.files["images"].forEach((file) => {
+      images.push("/product/" + file.filename);
+    });
+  }
+
+  //console.log(images);
 
   // check brand existance
   const brandExist = await Brand.findOne({ _id: brand });
@@ -88,6 +106,7 @@ const createProduct = async (req, res) => {
     brand,
     slug,
     imageCover: productCoverImagePath,
+    images,
   });
 
   res.status(StatusCodes.OK).json({ product });
@@ -132,4 +151,5 @@ module.exports = {
   updateProduct,
   deleteProduct,
   uploadproductCoverImage,
+  uploadProductMixOfImages,
 };

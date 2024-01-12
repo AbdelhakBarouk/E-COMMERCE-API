@@ -8,6 +8,7 @@ const {
   updateProduct,
   deleteProduct,
   uploadproductCoverImage,
+  uploadProductMixOfImages,
 } = require("../controllers/productController");
 
 const {
@@ -21,7 +22,7 @@ productRouter
   .post(
     authenticateUser,
     authorizePermission("admin"),
-    uploadproductCoverImage,
+    uploadProductMixOfImages,
     createProduct
   );
 productRouter
