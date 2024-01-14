@@ -17,6 +17,7 @@ const categoryRouter = require("./routes/categoryRoute");
 const subCategoryRouter = require("./routes/subCategoryRoute");
 const brandRouter = require("./routes/brandRoute");
 const productRouter = require("./routes/productRoute");
+const reviewRouter = require("./routes/reviewRoute");
 
 //middlewares
 const notFoundMiddleware = require("./middlewares/notFound");
@@ -32,6 +33,7 @@ app.use("/api/v1/categories", categoryRouter);
 app.use("/api/v1/subCategories", subCategoryRouter);
 app.use("/api/v1/brands", brandRouter);
 app.use("/api/v1/products", productRouter);
+app.use("/api/v1/reviews", reviewRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

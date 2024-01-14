@@ -69,4 +69,12 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+productSchema.post(
+  "deleteOne",
+  { document: true, query: false },
+  async function () {
+    await this.model("Review").deleteMany({ product: this._id });
+  }
+);
+
 module.exports = mongoose.model("Product", productSchema);

@@ -16,6 +16,9 @@ const {
   authorizePermission,
 } = require("../middlewares/authentication");
 
+const reviewsRouter = require("./reviewRoute");
+productRouter.use("/:productId/reviews", reviewsRouter);
+
 productRouter
   .route("/")
   .get(getAllProducts)
