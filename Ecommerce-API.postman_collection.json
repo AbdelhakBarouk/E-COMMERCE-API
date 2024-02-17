@@ -1,0 +1,855 @@
+{
+	"info": {
+		"_postman_id": "a805a108-3671-4029-80fc-f91bf6202a0a",
+		"name": "Ecommerce-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9716212",
+		"_collection_link": "https://lively-space-265669.postman.co/workspace/index_academy_express_eccomerce~6e0e6c55-6e82-41fa-bdff-aaf6904f24b0/collection/9716212-a805a108-3671-4029-80fc-f91bf6202a0a?action=share&source=collection_link&creator=9716212"
+	},
+	"item": [
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "REGISTER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"susan\",\r\n    \"email\":\"susan@gmail.com\",\r\n    \"password\":\"secret\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/register",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"susan@gmail.com\",\r\n    \"password\":\"secret\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/login",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGOUT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/auth/logout",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "USERS",
+			"item": [
+				{
+					"name": "GET ALL USERS",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/users",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SINGLE USER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/users/65a3f4334d1d2188440a8be1",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"users",
+								"65a3f4334d1d2188440a8be1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SHOW CURRENT USER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/users/showMe",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"users",
+								"showMe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE USER",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"susan\",\r\n    \"email\":\"susan@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/users/updateUser",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"users",
+								"updateUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE USER PASSWORD",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\":\"newsecret\",\r\n    \"newPassword\":\"secret\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/users/updateUserPassword",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"users",
+								"updateUserPassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CATEGORY",
+			"item": [
+				{
+					"name": "GET ALL CATEGORIES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/categories",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SINGLE CATEGORY",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/categories/659c13de800a4f99852c9c14",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"categories",
+								"659c13de800a4f99852c9c14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE CATEGORY",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "DJ HK",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/abdelhak/Downloads/Untitled design (48).png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{API_URL}}/categories",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE CATEGORY",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Only Cats\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/categories/659c24957ade6d77bcd64fbd",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"categories",
+								"659c24957ade6d77bcd64fbd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE CATEGORY",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/categories/659c24957ade6d77bcd64fbd",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"categories",
+								"659c24957ade6d77bcd64fbd"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SUB CATEGORY",
+			"item": [
+				{
+					"name": "GET ALL SUBCATEGORIES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/categories/659e7777c9ee1210bf6c2612/subCategories",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"categories",
+								"659e7777c9ee1210bf6c2612",
+								"subCategories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SINGLE SUBCATEGORY",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/categories/659d2abc0c60b18389da815e/subCategories/659d2b2e40130a7730009470",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"categories",
+								"659d2abc0c60b18389da815e",
+								"subCategories",
+								"659d2b2e40130a7730009470"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE SUBCATEGORY",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"DJ Cats\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/subCategories/659d422e7335e04003838c1c",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"subCategories",
+								"659d422e7335e04003838c1c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE SUBCATEGORY",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/categories/659d2abc0c60b18389da815e/subCategories/659d422e7335e04003838c1c",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"categories",
+								"659d2abc0c60b18389da815e",
+								"subCategories",
+								"659d422e7335e04003838c1c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE SUBCATEGROY",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"white cats\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/categories/659e7777c9ee1210bf6c2612/subCategories",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"categories",
+								"659e7777c9ee1210bf6c2612",
+								"subCategories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BRANDS",
+			"item": [
+				{
+					"name": "GET ALL BRANDS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/brands",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SINGLE BRAND",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/brands/659d4e869fecc3ee1b6f567f",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"brands",
+								"659d4e869fecc3ee1b6f567f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE BRAND",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "ADIDAS",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/abdelhak/Downloads/Untitled design (48).png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{API_URL}}/brands",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE BRAND",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"NEW ADIDAS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/brands/659d4e869fecc3ee1b6f567f",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"brands",
+								"659d4e869fecc3ee1b6f567f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE BRAND",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/brands/659d4e869fecc3ee1b6f567f",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"brands",
+								"659d4e869fecc3ee1b6f567f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PRODUCTS",
+			"item": [
+				{
+					"name": "GET ALL PRODUCTS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/products",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SINGLE PRODUCT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/products/659e78553fc3eeaefb0d8727",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"products",
+								"659e78553fc3eeaefb0d8727"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE PRODUCT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "product one",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "product one description",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "4000",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "200",
+									"type": "text"
+								},
+								{
+									"key": "imageCover",
+									"type": "file",
+									"src": "/C:/Users/abdelhak/Downloads/download.png"
+								},
+								{
+									"key": "category",
+									"value": "659e7777c9ee1210bf6c2612",
+									"type": "text"
+								},
+								{
+									"key": "subcategory",
+									"value": "659e7796c9ee1210bf6c2615",
+									"type": "text"
+								},
+								{
+									"key": "brand",
+									"value": "659e77b2c9ee1210bf6c2617",
+									"type": "text"
+								},
+								{
+									"key": "subcategory",
+									"value": "659e7796c9ee1210bf6c2615",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": [
+										"/C:/Users/abdelhak/Downloads/Untitled design (49).png",
+										"/C:/Users/abdelhak/Downloads/Untitled design (47).png"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{API_URL}}/products",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE PRODUCT",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"title\":\"product one \"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/products/659e7810c9ee1210bf6c2619",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"products",
+								"659e7810c9ee1210bf6c2619"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE PRODUCT",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/products/659e78553fc3eeaefb0d8727",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"products",
+								"659e78553fc3eeaefb0d8727"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "REVIEWS",
+			"item": [
+				{
+					"name": "CREATE REVIEW",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\":\"4\",\r\n    \"title\":\"review product one\",\r\n    \"comment\":\"the product is good\",\r\n    \"product\":\"659e78553fc3eeaefb0d8727\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/reviews",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE REVIEW",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "   { \r\n    \"rating\":\"1\",\r\n    \"title\":\"review product one\",\r\n    \"comment\":\"the product is very bad\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/reviews/65a24aff5d7e315815450830",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"reviews",
+								"65a24aff5d7e315815450830"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE REVIEW",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/reviews/65a3cd93422157570482a6e3",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"reviews",
+								"65a3cd93422157570482a6e3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SINGLE REVIEW",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/reviews/65a24aff5d7e315815450830",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"reviews",
+								"65a24aff5d7e315815450830"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL REVIEWS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/reviews",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SINGLE PRODUCT REVIEWS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/products/12345/reviews",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"products",
+								"12345",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

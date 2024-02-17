@@ -6,6 +6,15 @@ const app = express();
 
 //rest of packages
 const cookieParser = require("cookie-parser");
+const helmet = require("helmet");
+const cors = require("cors");
+const xss = require("xss-clean");
+const rateLimiter = require("express-rate-limit");
+
+// Swagger
+const swaggerUI = require("swagger-ui-express");
+const YAML = require("yamljs");
+const swaggerDocument = YAML.load("./swagger.yaml");
 
 //db
 const connectDB = require("./db/connectDB");
@@ -26,7 +35,20 @@ const errorHandlerMiddleware = require("./middlewares/error-handller");
 app.use(express.static("uploads"));
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
+app.set("trust proxy", 1);
+app.use(
+  rateLimiter({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  })
+);
+app.use(helmet());
+app.use(cors());
+app.use(xss());
 
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/categories", categoryRouter);

@@ -12,9 +12,8 @@ const getAllSubCategories = async (req, res) => {
     .json({ count: subCategories.length, subCategories });
 };
 const getSingleSubCategory = async (req, res) => {
-  const category = req.params.categoryId;
   const id = req.params.id;
-  const subCategory = await SubCategory.find({ category, _id: id });
+  const subCategory = await SubCategory.find({ _id: id });
   if (!subCategory) {
     throw new CustomError.NotFound("Sub Category Not Found!");
   }

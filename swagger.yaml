@@ -1,0 +1,930 @@
+openapi: 3.0.0
+info:
+  title: Ecommerce-API
+  contact: {}
+  version: "1.0"
+servers:
+  - url: http://localhost:5000/api/v1
+    variables: {}
+paths:
+  /auth/register:
+    post:
+      tags:
+        - AUTH
+      summary: REGISTER
+      operationId: REGISTER
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/REGISTERREQUEST"
+                - example:
+                    name: susan
+                    email: susan@gmail.com
+                    password: secret
+            example:
+              name: susan
+              email: susan@gmail.com
+              password: secret
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /auth/login:
+    post:
+      tags:
+        - AUTH
+      summary: LOGIN
+      operationId: LOGIN
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/LOGINREQUEST"
+                - example:
+                    email: susan@gmail.com
+                    password: secret
+            example:
+              email: susan@gmail.com
+              password: secret
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /auth/logout:
+    post:
+      tags:
+        - AUTH
+      summary: LOGOUT
+      operationId: LOGOUT
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /users:
+    get:
+      tags:
+        - USERS
+      summary: GET ALL USERS
+      operationId: GETALLUSERS
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /users/{userId}:
+    get:
+      tags:
+        - USERS
+      summary: GET SINGLE USER
+      operationId: GETSINGLEUSER
+      parameters:
+        - name: userId
+          in: path
+          description: ID of the user to retrieve
+          required: true
+          schema:
+            type: string
+          example: 659c13de800a4f99852c9c14
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /users/showMe:
+    get:
+      tags:
+        - USERS
+      summary: SHOW CURRENT USER
+      operationId: SHOWCURRENTUSER
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /users/updateUser:
+    patch:
+      tags:
+        - USERS
+      summary: UPDATE USER
+      operationId: UPDATEUSER
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/UPDATEUSERREQUEST"
+                - example:
+                    name: susan
+                    email: susan@gmail.com
+            example:
+              name: susan
+              email: susan@gmail.com
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /users/updateUserPassword:
+    patch:
+      tags:
+        - USERS
+      summary: UPDATE USER PASSWORD
+      operationId: UPDATEUSERPASSWORD
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/UPDATEUSERPASSWORDREQUEST"
+                - example:
+                    oldPassword: newsecret
+                    newPassword: secret
+            example:
+              oldPassword: newsecret
+              newPassword: secret
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /categories:
+    get:
+      tags:
+        - CATEGORY
+      summary: GET ALL CATEGORIES
+      operationId: GETALLCATEGORIES
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+        - CATEGORY
+      summary: CREATE CATEGORY
+      operationId: CREATECATEGORY
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding: {}
+            schema:
+              required:
+                - name
+                - image
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: DJ HK
+                image:
+                  type: string
+                  format: binary
+        required: false
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /categories/{categoryId}:
+    get:
+      tags:
+        - CATEGORY
+      summary: GET SINGLE CATEGORY
+      operationId: GETSINGLECATEGORY
+      parameters:
+        - name: categoryId
+          in: path
+          description: ID of the category to retrieve
+          required: true
+          schema:
+            type: string
+          example: 659c13de800a4f99852c9c14
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+        - CATEGORY
+      summary: UPDATE CATEGORY
+      operationId: UPDATECATEGORY
+      parameters:
+        - name: categoryId
+          in: path
+          description: ID of the category to update
+          required: true
+          schema:
+            type: string
+          example: 659c13de800a4f99852c9c14
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/UPDATECATEGORYREQUEST"
+                - example:
+                    name: Only Cats
+            example:
+              name: Only Cats
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - CATEGORY
+      summary: DELETE CATEGORY
+      operationId: DELETECATEGORY
+      parameters:
+        - name: categoryId
+          in: path
+          description: ID of the category to delete
+          required: true
+          schema:
+            type: string
+          example: 659c13de800a4f99852c9c14
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /categories/{categoryId}/subCategories:
+    get:
+      tags:
+        - SUB CATEGORY
+      summary: GET ALL SUBCATEGORIES
+      operationId: GETALLSUBCATEGORIES
+      parameters:
+        - name: categoryId
+          in: path
+          description: ID of the category to retrieve its subcategories
+          required: true
+          schema:
+            type: string
+          example: 659c13de800a4f99852c9c14
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+        - SUB CATEGORY
+      summary: CREATE SUBCATEGROY
+      operationId: CREATESUBCATEGROY
+      parameters:
+        - name: categoryId
+          in: path
+          description: ID of the category that the subcategories will belong to
+          required: true
+          schema:
+            type: string
+          example: 659c13de800a4f99852c9c14
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/CREATESUBCATEGROYREQUEST"
+                - example:
+                    name: white cats
+            example:
+              name: white cats
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /subCategories/{subCategoryId}:
+    get:
+      tags:
+        - SUB CATEGORY
+      summary: GET SINGLE SUBCATEGORY
+      operationId: GETSINGLESUBCATEGORY
+      parameters:
+        - name: subCategoryId
+          in: path
+          description: ID of the subcategory to retrieve
+          required: true
+          schema:
+            type: string
+          example: 659c13de800a4f99852c9c14
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+        - SUB CATEGORY
+      summary: UPDATE SUBCATEGORY
+      operationId: UPDATESUBCATEGORY
+      parameters:
+        - name: subCategoryId
+          in: path
+          description: ID of the subcategory to update
+          required: true
+          schema:
+            type: string
+          example: 659c13de800a4f99852c9c14
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/UPDATESUBCATEGORYREQUEST"
+                - example:
+                    name: DJ Cats
+            example:
+              name: DJ Cats
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - SUB CATEGORY
+      summary: DELETE SUBCATEGORY
+      operationId: DELETESUBCATEGORY
+      parameters:
+        - name: subCategoryId
+          in: path
+          description: ID of the subcategory to delete
+          required: true
+          schema:
+            type: string
+          example: 659c13de800a4f99852c9c14
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /brands:
+    get:
+      tags:
+        - BRANDS
+      summary: GET ALL BRANDS
+      operationId: GETALLBRANDS
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+        - BRANDS
+      summary: CREATE BRAND
+      operationId: CREATEBRAND
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding: {}
+            schema:
+              required:
+                - name
+                - image
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: ADIDAS
+                image:
+                  type: string
+                  format: binary
+        required: false
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /brands/{brandId}:
+    get:
+      tags:
+        - BRANDS
+      summary: GET SINGLE BRAND
+      operationId: GETSINGLEBRAND
+      parameters:
+        - name: brandId
+          in: path
+          description: ID of the brand to retrieve
+          required: true
+          schema:
+            type: string
+          example: 659c13de800a4f99852c9c14
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+        - BRANDS
+      summary: UPDATE BRAND
+      operationId: UPDATEBRAND
+      parameters:
+        - name: brandId
+          in: path
+          description: ID of the brand to update
+          required: true
+          schema:
+            type: string
+          example: 659c13de800a4f99852c9c14
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/UPDATEBRANDREQUEST"
+                - example:
+                    name: NEW ADIDAS
+            example:
+              name: NEW ADIDAS
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - BRANDS
+      summary: DELETE BRAND
+      operationId: DELETEBRAND
+      parameters:
+        - name: brandId
+          in: path
+          description: ID of the brand to delete
+          required: true
+          schema:
+            type: string
+          example: 659c13de800a4f99852c9c14
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /products:
+    get:
+      tags:
+        - PRODUCTS
+      summary: GET ALL PRODUCTS
+      operationId: GETALLPRODUCTS
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+        - PRODUCTS
+      summary: CREATE PRODUCT
+      operationId: CREATEPRODUCT
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding: {}
+            schema:
+              required:
+                - title
+                - description
+                - price
+                - quantity
+                - imageCover
+                - category
+                - subcategory
+                - brand
+                - images
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: product one
+                description:
+                  type: string
+                  example: product one description
+                price:
+                  type: integer
+                  format: int32
+                  example: 4000
+                quantity:
+                  type: integer
+                  format: int32
+                  example: 200
+                imageCover:
+                  type: string
+                  format: binary
+                category:
+                  type: string
+                  example: 659e7777c9ee1210bf6c2612
+                subcategory:
+                  type: string
+                  example: 659e7796c9ee1210bf6c2615
+                brand:
+                  type: string
+                  example: 659e77b2c9ee1210bf6c2617
+                images:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+        required: false
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /products/{productId}:
+    get:
+      tags:
+        - PRODUCTS
+      summary: GET SINGLE PRODUCT
+      operationId: GETSINGLEPRODUCT
+      parameters:
+        - name: productId
+          in: path
+          description: ID of the product to retrieve
+          required: true
+          schema:
+            type: string
+          example: 659c13de800a4f99852c9c14
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - PRODUCTS
+      summary: DELETE PRODUCT
+      operationId: DELETEPRODUCT
+      parameters:
+        - name: productId
+          in: path
+          description: ID of the product to delete
+          required: true
+          schema:
+            type: string
+          example: 659c13de800a4f99852c9c14
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+        - PRODUCTS
+      summary: UPDATE PRODUCT
+      operationId: UPDATEPRODUCT
+      parameters:
+        - name: productId
+          in: path
+          description: ID of the product to update
+          required: true
+          schema:
+            type: string
+          example: 659c13de800a4f99852c9c14
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/UPDATEPRODUCTREQUEST"
+                - example:
+                    title: "product one "
+            example:
+              title: "product one "
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /reviews:
+    post:
+      tags:
+        - REVIEWS
+      summary: CREATE REVIEW
+      operationId: CREATEREVIEW
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/CREATEREVIEWREQUEST"
+                - example:
+                    rating: "4"
+                    title: review product one
+                    comment: the product is good
+                    product: 659e78553fc3eeaefb0d8727
+            example:
+              rating: "4"
+              title: review product one
+              comment: the product is good
+              product: 659e78553fc3eeaefb0d8727
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - REVIEWS
+      summary: GET ALL REVIEWS
+      operationId: GETALLREVIEWS
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /reviews/{reviewId}:
+    patch:
+      tags:
+        - REVIEWS
+      summary: UPDATE REVIEW
+      operationId: UPDATEREVIEW
+      parameters:
+        - name: reviewId
+          in: path
+          description: ID of the review to update
+          required: true
+          schema:
+            type: string
+          example: 659c13de800a4f99852c9c14
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/UPDATEREVIEWREQUEST"
+                - example:
+                    rating: "1"
+                    title: review product one
+                    comment: the product is very bad
+            example:
+              rating: "1"
+              title: review product one
+              comment: the product is very bad
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - REVIEWS
+      summary: GET SINGLE REVIEW
+      operationId: GETSINGLEREVIEW
+      parameters:
+        - name: reviewId
+          in: path
+          description: ID of the review to retrieve
+          required: true
+          schema:
+            type: string
+          example: 659c13de800a4f99852c9c14
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - REVIEWS
+      summary: DELETE REVIEW
+      operationId: DELETEREVIEW
+      parameters:
+        - name: reviewId
+          in: path
+          description: ID of the review to delete
+          required: true
+          schema:
+            type: string
+          example: 659c13de800a4f99852c9c14
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /products/{productId}/reviews:
+    get:
+      tags:
+        - REVIEWS
+      summary: GET SINGLE PRODUCT REVIEWS
+      operationId: GETSINGLEPRODUCTREVIEWS
+      parameters:
+        - name: productId
+          in: path
+          description: ID of the product to retrieve reviews
+          required: true
+          schema:
+            type: string
+          example: 659c13de800a4f99852c9c14
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    REGISTERREQUEST:
+      title: REGISTERREQUEST
+      required:
+        - name
+        - email
+        - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: susan
+        email: susan@gmail.com
+        password: secret
+    LOGINREQUEST:
+      title: LOGINREQUEST
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: susan@gmail.com
+        password: secret
+    UPDATEUSERREQUEST:
+      title: UPDATEUSERREQUEST
+      required:
+        - name
+        - email
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+      example:
+        name: susan
+        email: susan@gmail.com
+    UPDATEUSERPASSWORDREQUEST:
+      title: UPDATEUSERPASSWORDREQUEST
+      required:
+        - oldPassword
+        - newPassword
+      type: object
+      properties:
+        oldPassword:
+          type: string
+        newPassword:
+          type: string
+      example:
+        oldPassword: newsecret
+        newPassword: secret
+    UPDATECATEGORYREQUEST:
+      title: UPDATECATEGORYREQUEST
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: Only Cats
+    UPDATESUBCATEGORYREQUEST:
+      title: UPDATESUBCATEGORYREQUEST
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: DJ Cats
+    CREATESUBCATEGROYREQUEST:
+      title: CREATESUBCATEGROYREQUEST
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: white cats
+    UPDATEBRANDREQUEST:
+      title: UPDATEBRANDREQUEST
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: NEW ADIDAS
+    UPDATEPRODUCTREQUEST:
+      title: UPDATEPRODUCTREQUEST
+      required:
+        - title
+      type: object
+      properties:
+        title:
+          type: string
+      example:
+        title: "product one "
+    CREATEREVIEWREQUEST:
+      title: CREATEREVIEWREQUEST
+      required:
+        - rating
+        - title
+        - comment
+        - product
+      type: object
+      properties:
+        rating:
+          type: string
+        title:
+          type: string
+        comment:
+          type: string
+        product:
+          type: string
+      example:
+        rating: "4"
+        title: review product one
+        comment: the product is good
+        product: 659e78553fc3eeaefb0d8727
+    UPDATEREVIEWREQUEST:
+      title: UPDATEREVIEWREQUEST
+      required:
+        - rating
+        - title
+        - comment
+      type: object
+      properties:
+        rating:
+          type: string
+        title:
+          type: string
+        comment:
+          type: string
+      example:
+        rating: "1"
+        title: review product one
+        comment: the product is very bad
+tags:
+  - name: AUTH
+  - name: USERS
+  - name: CATEGORY
+  - name: SUB CATEGORY
+  - name: BRANDS
+  - name: PRODUCTS
+  - name: REVIEWS
